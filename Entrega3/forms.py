@@ -2,7 +2,7 @@ from django import forms
 
 class PilotoFormulario(forms.Form):
     nombre = forms.CharField()
-    escuderia = forms.CharField()
+    # escuderia = forms.CharField()
     puntos = forms.IntegerField()
 
 class EscuderiaFormulario(forms.Form):

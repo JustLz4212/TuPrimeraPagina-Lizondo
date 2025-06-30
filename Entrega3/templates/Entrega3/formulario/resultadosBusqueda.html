@@ -1,0 +1,39 @@
+{% extends 'Entrega3/padre.html' %}
+{% load static %}
+
+{% block title %}Resultados Busqueda{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-center">Resultados de la búsqueda</h4>
+
+                    <p class="lead">Estamos buscando el piloto con este total de puntos: <strong>{{ puntos }}</strong></p>
+
+                    {% if pilotos %}
+                        <ul class="list-group">
+                            {% for piloto in pilotos %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><strong>Piloto:</strong> {{ piloto.nombre }}</span>
+                                    <span><strong>Puntaje:</strong> {{ piloto.Puntos }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="alert alert-warning mt-3" role="alert">
+                            No se encontraron pilotos con ese puntaje.
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+       
+{% endblock %}
