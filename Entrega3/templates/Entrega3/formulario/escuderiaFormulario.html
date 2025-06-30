@@ -1,0 +1,37 @@
+{% extends 'Entrega3/padre.html' %}
+{% load static %}
+
+{% block title %}Formulario Escuderías{% endblock %}
+
+{% block contenido %}
+{% if miFormulario.errors %}
+    <div class="alert alert-danger text-center" role="alert">
+        Datos erróneos, revisar
+    </div>
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Agregar Escudería</h3>
+
+                    <form method="POST" action="{% url 'escuderiaForm' %}">
+                        {% csrf_token %}
+                        <table class="table table-borderless">
+                            {{ miFormulario.as_table }}
+                        </table>
+                        <div class="d-grid">
+                            <input type="submit" class="btn btn-primary" value="Enviar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+       
+{% endblock %}
