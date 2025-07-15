@@ -21,7 +21,7 @@ def pilotoForm(request):
             miFormulario = PilotoFormulario(request.POST) # Aqui me llega la informacion del html
             if miFormulario.is_valid():
                   informacion = miFormulario.cleaned_data
-                  piloto = Piloto(nombre=informacion["nombre"], escuderia=informacion["escuderia"], Puntos=informacion["puntos"])
+                  piloto = Piloto(nombre=informacion["nombre"], Puntos=informacion["puntos"])
                   piloto.save()
                   return render(request, "Entrega3/Pilotos.html")
       else:
@@ -55,22 +55,22 @@ def escuderiaForm(request):
  
       return render(request, "Entrega3/formulario/escuderiaFormulario.html", {"miFormulario": miFormulario})
 
-# def busquedaCamada(request):
-#     return render(request, "AppCoder/formulario/busquedaCamada.html")
+def busquedaPiloto(request):
+    return render(request, "Entrega3/formulario/busquedaPiloto.html")
 
 
-# def buscar(request):
-#     if request.GET["camada"]:
-#         #respuesta = f"Estoy buscando la camada nro: {request.GET['camada'] }"
-#         camada = request.GET['camada']
-#         # icontains es un filtro que se usa para buscar coincidencias en los campos de texto de la base de datos, 
-#         # sin importar si las letras están en mayúsculas o minúsculas
-#         cursos = Curso.objects.filter(camada__icontains=camada)
+def buscar(request):
+    if request.GET["puntos"]:
+        #respuesta = f"Estoy buscando la camada nro: {request.GET['camada'] }"
+        puntos = request.GET['puntos']
+        # icontains es un filtro que se usa para buscar coincidencias en los campos de texto de la base de datos, 
+        # sin importar si las letras están en mayúsculas o minúsculas
+        pilotos = Piloto.objects.filter(Puntos__icontains=puntos)
 
-#         return render(request, "AppCoder/formulario/resultadosBusqueda.html", {"cursos": cursos, "camada": camada})
+        return render(request, "Entrega3/formulario/resultadosBusqueda.html", {"pilotos": pilotos, "puntos": puntos})
 
-#     else:
-#         respuesta = "No enviaste datos"
+    else:
+        respuesta = "No enviaste datos"
 
-#         # No olvidar from django.http import HttpResponse
-#         return HttpResponse(respuesta)
+        # No olvidar from django.http import HttpResponse
+        return HttpResponse(respuesta)
