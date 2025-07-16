@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <h3 class="card-title text-center mb-4">Agregar Piloto</h3>
 
-                    <form method="POST" action="{% url 'pilotoForm' %}">
+                    <form method="POST" action="{% url 'pilotoFormulario' %}">
                         {% csrf_token %}
                         <table class="table table-borderless">
                             {{ miFormulario.as_table }}

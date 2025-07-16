@@ -1,0 +1,68 @@
+{% extends 'Entrega3/padre.html' %}
+{% load static %}
+
+{% block title %}Pilotos{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-center">Pilotos</h4>
+                    
+                    {% if pilotos %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover align-middle text-center">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Escudería</th>
+                                        <th>Puntos</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for piloto in pilotos %}
+                                        <tr>
+                                            <td>{{ piloto.nombre }}</td>
+                                            <td>{{ piloto.escuderia }}</td>
+                                            <td>{{ piloto.puntos }}</td>
+                                            <td>
+                                                <a href="{% url 'editarPiloto' piloto.id %}" 
+                                                class="btn btn-secondary btn-sm me-1" 
+                                                title="Editar">
+                                                    <i class="bi bi-pencil-square"></i> Editar
+                                                </a>
+                                                <a href="{% url 'eliminarPiloto' piloto.id %}" 
+                                                class="btn btn-danger btn-sm"
+                                                title="Eliminar"
+                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este piloto?');">
+                                                    <i class="bi bi-trash"></i> Eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning mt-3" role="alert">
+                            No se encontraron Pilotos.
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Botón para crear nuevo piloto -->
+                    <div class="mb-3 text-end">
+                        <a href="{% url 'pilotoFormulario' %}" class="btn btn-primary">
+                            Crear nuevo Piloto
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

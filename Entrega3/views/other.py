@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Campeones, Piloto, Escuderia
-from .forms import PilotoFormulario, CampeonesFormulario, EscuderiaFormulario
+from ..models import Campeones, Piloto, Escuderia
+from ..forms import PilotoFormulario, CampeonesFormulario, EscuderiaFormulario
 from django.http import HttpResponse
 
 def index(request):
@@ -21,7 +21,7 @@ def pilotoForm(request):
             miFormulario = PilotoFormulario(request.POST) # Aqui me llega la informacion del html
             if miFormulario.is_valid():
                   informacion = miFormulario.cleaned_data
-                  piloto = Piloto(nombre=informacion["nombre"], Puntos=informacion["puntos"])
+                  piloto = Piloto(nombre=informacion["nombre"], puntos=informacion["puntos"])
                   piloto.save()
                   return render(request, "Entrega3/Pilotos.html")
       else:
@@ -65,7 +65,7 @@ def buscar(request):
         puntos = request.GET['puntos']
         # icontains es un filtro que se usa para buscar coincidencias en los campos de texto de la base de datos, 
         # sin importar si las letras están en mayúsculas o minúsculas
-        pilotos = Piloto.objects.filter(Puntos__icontains=puntos)
+        pilotos = Piloto.objects.filter(puntos__icontains=puntos)
 
         return render(request, "Entrega3/formulario/resultadosBusqueda.html", {"pilotos": pilotos, "puntos": puntos})
 
