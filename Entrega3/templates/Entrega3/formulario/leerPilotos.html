@@ -12,6 +12,24 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4 text-center">Pilotos</h4>
                     
+                    <!-- Buscador por escudería -->
+                    <form action="{% url 'buscar' %}" method="GET" class="mb-4">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-md-10">
+                                <input type="text" name="escuderia" class="form-control"
+                                    placeholder="Buscar por escudería"
+                                    value="{{ request.GET.escuderia }}" required>
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <button type="submit" class="btn btn-outline-primary w-100">
+                                    Buscar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+
+
                     {% if pilotos %}
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover align-middle text-center">

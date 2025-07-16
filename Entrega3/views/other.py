@@ -59,18 +59,23 @@ def busquedaPiloto(request):
     return render(request, "Entrega3/formulario/busquedaPiloto.html")
 
 
+# def buscar(request):
+#     if request.GET["escuderia"]:
+#         #respuesta = f"Estoy buscando la camada nro: {request.GET['camada'] }"
+#         escuderia = request.GET['escuderia']
+#         # icontains es un filtro que se usa para buscar coincidencias en los campos de texto de la base de datos, 
+#         # sin importar si las letras están en mayúsculas o minúsculas
+#         pilotos = Piloto.objects.filter(escuderia__icontains=escuderia)
+
+#         return render(request, "Entrega3/formulario/resultadosBusqueda.html", {"pilotos": pilotos, "escuderia": escuderia})
+
+#     else:
+#         respuesta = "No enviaste datos"
+
+#         # No olvidar from django.http import HttpResponse
+#         return HttpResponse(respuesta)
+
 def buscar(request):
-    if request.GET["escuderia"]:
-        #respuesta = f"Estoy buscando la camada nro: {request.GET['camada'] }"
-        escuderia = request.GET['escuderia']
-        # icontains es un filtro que se usa para buscar coincidencias en los campos de texto de la base de datos, 
-        # sin importar si las letras están en mayúsculas o minúsculas
-        pilotos = Piloto.objects.filter(escuderia__icontains=escuderia)
-
-        return render(request, "Entrega3/formulario/resultadosBusqueda.html", {"pilotos": pilotos, "escuderia": escuderia})
-
-    else:
-        respuesta = "No enviaste datos"
-
-        # No olvidar from django.http import HttpResponse
-        return HttpResponse(respuesta)
+    escuderia = request.GET.get('escuderia', '')
+    pilotos = Piloto.objects.filter(escuderia__icontains=escuderia)
+    return render(request, "Entrega3/formulario/leerPilotos.html", {"pilotos": pilotos})
