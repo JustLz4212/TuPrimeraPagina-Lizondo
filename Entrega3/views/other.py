@@ -60,14 +60,14 @@ def busquedaPiloto(request):
 
 
 def buscar(request):
-    if request.GET["puntos"]:
+    if request.GET["escuderia"]:
         #respuesta = f"Estoy buscando la camada nro: {request.GET['camada'] }"
-        puntos = request.GET['puntos']
+        escuderia = request.GET['escuderia']
         # icontains es un filtro que se usa para buscar coincidencias en los campos de texto de la base de datos, 
         # sin importar si las letras están en mayúsculas o minúsculas
-        pilotos = Piloto.objects.filter(puntos__icontains=puntos)
+        pilotos = Piloto.objects.filter(escuderia__icontains=escuderia)
 
-        return render(request, "Entrega3/formulario/resultadosBusqueda.html", {"pilotos": pilotos, "puntos": puntos})
+        return render(request, "Entrega3/formulario/resultadosBusqueda.html", {"pilotos": pilotos, "escuderia": escuderia})
 
     else:
         respuesta = "No enviaste datos"
