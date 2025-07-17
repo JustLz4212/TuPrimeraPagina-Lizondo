@@ -1,12 +1,12 @@
 from django.urls import path
-from AppCoder.views.other import estudiantes, entregables, inicio, cursoFormulario2, busquedaCamada, buscar
+from AppCoder.views.other import estudiantes, entregables, cursoFormulario2, busquedaCamada, buscar #inicio
 from AppCoder.views.profesores import leerProfesores, eliminarProfesor, editarProfesor, profesorFormulario
 from AppCoder.views.cursos import CursoCreateView, CursoDetailView, CursoDeleteView, CursoListView, CursoUpdateView
 from AppCoder.views.usuario import login_request, register, editarPerfil, upload_avatar
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('', inicio, name='inicio'),
+    # path('', inicio, name='inicio'),
     # path('cursos/', cursos, name='cursos'),
     # path('profesores/', profesores, name='profesores'),
     path('estudiantes/', estudiantes, name='estudiantes'),
@@ -34,7 +34,7 @@ urlpatterns = [
     path('registro', register, name='registro'),
     path('logout', LogoutView.as_view(template_name='AppCoder/usuario/logout.html'), name='logout'),
 
-    path('editarPerfil/', editarPerfil, name='editarPerfil'),
-    path('upload_avatar/', upload_avatar, name='upload_avatar'),
+    # path('editarPerfil/', editarPerfil, name='editarPerfil'),
+    # path('upload_avatar/', upload_avatar, name='upload_avatar'),
 
 ]

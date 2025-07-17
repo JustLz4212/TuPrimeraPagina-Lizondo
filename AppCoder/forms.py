@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from AppCoder.models import Avatar
+# from AppCoder.models import Avatar
 
 class CursoFormulario(forms.Form):
     curso = forms.CharField()
@@ -52,8 +52,8 @@ class EditProfileForm(UserChangeForm):
         fields = ('username', 'email', 'last_name', 'first_name', 'is_active')
 
 
-class AvatarForm(forms.ModelForm):
+# class AvatarForm(forms.ModelForm):
     
-    class Meta:
-        model = Avatar
-        fields = ['imagen']
+#     class Meta:
+#         model = Avatar
+#         fields = ['imagen']

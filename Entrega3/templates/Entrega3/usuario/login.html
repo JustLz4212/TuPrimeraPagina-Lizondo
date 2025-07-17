@@ -1,7 +1,7 @@
 {% extends 'Entrega3/padre.html' %}
 {% load static %}
 
-{% block title %}Perfil{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block contenido %}
 <div class="container mt-5 mb-5">
@@ -11,7 +11,7 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4">
-                        Formulario - Editar Perfil de {{usuario}}
+                        Login
                     </h4>
                     
 
@@ -20,9 +20,11 @@
                         <div class="mb-3">
                             {{ form.as_p }}
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+                        <div class="text-center d-flex justify-content-center gap-2">
+                            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                            <a href="{% url 'registro' %}" class="btn btn-outline-secondary">Registrarse</a>
                         </div>
+
                     </form>
                     
                 </div>

@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from ..models import Curso, Profesor, Avatar
+from ..models import Curso, Profesor #Avatar
 from ..forms import CursoFormulario, ProfesorFormulario
 from django.http import HttpResponse
 
-def inicio(request):
-    avatar = Avatar.objects.filter(user=request.user.id).first()
-    return render(request, "AppCoder/index.html", {"avatar": avatar if avatar else None})
+# def inicio(request):
+#     avatar = Avatar.objects.filter(user=request.user.id).first()
+#     return render(request, "AppCoder/index.html", {"avatar": avatar if avatar else None})
 
 def cursos(request):
     return render(request, "AppCoder/cursos.html")

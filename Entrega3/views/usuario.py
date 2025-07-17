@@ -2,8 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from AppCoder.forms import UserRegisterForm, EditProfileForm # AvatarForm
-# from AppCoder.models import Avatar
+from Entrega3.forms import UserRegisterForm, EditProfileForm#, AvatarForm
+# from Entrega3.models import Avatar
 
 def login_request(request):
 
@@ -20,11 +20,11 @@ def login_request(request):
             if user is not None:
                 login(request, user)
 
-        return redirect('inicio')
+        return redirect('index')
 
     form = AuthenticationForm()
 
-    return render(request, "AppCoder/usuario/login.html", {"form": form})
+    return render(request, "Entrega3/usuario/login.html", {"form": form})
 
 def register(request):
 
@@ -35,12 +35,12 @@ def register(request):
 
                   username = form.cleaned_data['username']
                   form.save()
-                  return render(request,"AppCoder/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
+                  return render(request,"Entrega3/index.html" ,  {"mensaje":"Usuario Creado :)"})
 
       else:      
             form = UserRegisterForm()     
 
-      return render(request,"AppCoder/usuario/registro.html" ,  {"form":form})
+      return render(request,"Entrega3/usuario/registro.html" ,  {"form":form})
 
 
 @login_required # con este decorador exigimos que el usuario esté logueado para utilizar esta view
@@ -58,23 +58,23 @@ def editarPerfil(request):
 
             miFormulario.save()
 
-            return redirect('inicio')
+            return redirect('index')
 
     else:
 
         miFormulario = EditProfileForm(instance=usuario)
 
-    return render(request, "AppCoder/usuario/editarPerfil.html", {"form": miFormulario, "usuario": usuario})
+    return render(request, "Entrega3/usuario/editarPerfil.html", {"form": miFormulario, "usuario": usuario})
 
 
-@login_required
-def upload_avatar(request):
-    avatar = Avatar.objects.filter(user=request.user.id).first()
-    if request.method == 'POST':
-        form = AvatarForm(request.POST, request.FILES, instance=avatar)
-        if form.is_valid():
-            form.save()
-            return redirect('inicio')
-    else:
-        form = AvatarForm(instance=avatar)
-    return render(request, 'AppCoder/usuario/upload_avatar.html', {'form': form})
+# @login_required
+# def upload_avatar(request):
+#     avatar = Avatar.objects.filter(user=request.user.id).first()
+#     if request.method == 'POST':
+#         form = AvatarForm(request.POST, request.FILES, instance=avatar)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('inicio')
+#     else:
+#         form = AvatarForm(instance=avatar)
+#     return render(request, 'Entrega3/usuario/upload_avatar.html', {'form': form})
