@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from Entrega3.forms import PilotoFormulario
 from Entrega3.models import Piloto
+from django.contrib.auth.decorators import login_required
 
 def leerPilotos(request):
       pilotos = Piloto.objects.all() 
       return render(request, "Entrega3/formulario/leerPilotos.html", {"pilotos": pilotos})
 
-
+@login_required
 def pilotoFormulario(request):  
     # Vista para crear un nuevo piloto a través de un formulario
 
@@ -42,7 +43,7 @@ def pilotoFormulario(request):
     return render(request, "Entrega3/formulario/pilotoFormulario.html", {"miFormulario": miFormulario})  
     # Renderizamos el formulario en el template HTML, pasando el formulario como contexto
 
-
+@login_required
 def eliminarPiloto(request, id_piloto):
  
     piloto = Piloto.objects.get(id=id_piloto)  # Obtengo el profesor por su ID
@@ -51,7 +52,7 @@ def eliminarPiloto(request, id_piloto):
     return leerPilotos(request)
     # vuelvo al menú
 
-
+@login_required
 def editarPiloto(request, id_piloto):
     piloto = Piloto.objects.get(id=id_piloto)  # Recibe el nombre del piloto que vamos a modificar
     if request.method == 'POST':
