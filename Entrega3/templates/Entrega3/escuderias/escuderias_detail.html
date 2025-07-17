@@ -1,0 +1,36 @@
+{% extends 'Entrega3/padre.html' %}
+{% load static %}
+
+{% block title %}Escuderias{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4">📘 Detalle de la escuderia</h4>
+
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item">
+                            <strong>Nombre de la escuderia:</strong> <i>{{ escuderia.nombre }}</i>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Team Principal:</strong> <i>{{ escuderia.TeamPrincipal }}</i>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Puesto:</strong> <i>{{ escuderia.puesto }}</i>
+                        </li>
+                    </ul>
+
+                    <div class="text-center">
+                        <a href="{% url 'escuderias' %}" class="btn btn-outline-primary">← Regresar a la lista</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

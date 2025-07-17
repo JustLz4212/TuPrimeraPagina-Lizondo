@@ -50,11 +50,10 @@ def eliminarPiloto(request, id_piloto):
  
     return leerPilotos(request)
     # vuelvo al menú
-    # profesores = Profesor.objects.all()  # trae todos los profesores
-    # return render(request, "AppCoder/formulario/leerProfesores.html", {"profesores": profesores})
+
 
 def editarPiloto(request, id_piloto):
-    piloto = Piloto.objects.get(id=id_piloto)  # Recibe el nombre del profesor que vamos a modificar
+    piloto = Piloto.objects.get(id=id_piloto)  # Recibe el nombre del piloto que vamos a modificar
     if request.method == 'POST':
         miFormulario = PilotoFormulario(request.POST)
         if miFormulario.is_valid():  # Si pasó la validación de Django
@@ -74,4 +73,5 @@ def editarPiloto(request, id_piloto):
                 }
         )
 
+    # Por alguna razón el .id me tira error en VSCode pero funciona todo igual (también lo tiraba con el código de la clase)
     return render(request, "Entrega3/formulario/editarPiloto.html", {"miFormulario": miFormulario, "piloto_id": piloto.id})

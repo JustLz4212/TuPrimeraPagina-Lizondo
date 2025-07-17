@@ -6,7 +6,8 @@ class Piloto(models.Model):
     puntos = models.IntegerField()  # Campo entero
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Escudería: {self.escuderia} - Puntos: {self.puntos}"
+        # return f"Nombre: {self.nombre} - Escudería: {self.escuderia} - Puntos: {self.puntos}"
+        return f"Nombre: {self.nombre}"
 
 class Escuderia(models.Model):
     nombre = models.CharField(max_length=30)  # Campo string de 30 caracteres
@@ -14,7 +15,8 @@ class Escuderia(models.Model):
     puesto = models.IntegerField()  # Campo entero
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Director: {self.TeamPrincipal} - Puesto: {self.puesto}"
+        # return f"Nombre: {self.nombre} - Director: {self.TeamPrincipal} - Puesto: {self.puesto}"
+        return f"Nombre: {self.nombre}"
 
 class Campeones(models.Model):
     nombre = models.CharField(max_length=30)  # Campo string de 30 caracteres
@@ -22,5 +24,6 @@ class Campeones(models.Model):
     victorias = models.IntegerField() 
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Campeonatos: {self.Campeonatos} - Victorias: {self.victorias}"
+        # return f"Nombre: {self.nombre} - Campeonatos: {self.Campeonatos} - Victorias: {self.victorias}"
+        return f"Nombre: {self.nombre}"
     
