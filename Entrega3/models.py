@@ -20,7 +20,7 @@ class Escuderia(models.Model):
 
 class Campeones(models.Model):
     nombre = models.CharField(max_length=30)  # Campo string de 30 caracteres
-    Campeonatos = models.IntegerField()  
+    campeonatos = models.IntegerField()  
     victorias = models.IntegerField() 
 
     def __str__(self):

@@ -1,0 +1,113 @@
+{% extends 'Entrega3/padre.html' %}
+{% load static %}
+
+{% block title %}Campeones{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-center">📚 Lista de campeones</h4>
+                    
+                    {% if object_list %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover text-center align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Campeonatos</th>
+                                        <th scope="col">Victorias</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for campeones in object_list %}
+                                        <tr>
+                                            <td>{{ campeones.nombre }}</td>
+                                            <td>{{ campeones.campeonatos }}</td>
+                                            <td>{{ campeones.victorias }}</td>
+                                            <td>
+                                                <a href="{% url 'campeones_detail' campeones.id %}" class="btn btn-sm btn-outline-info me-1">Ver</a>
+                                                <a href="{% url 'campeones_edit' campeones.id %}" class="btn btn-sm btn-outline-warning me-1">Editar</a>
+                                                <a href="{% url 'campeones_delete' campeones.id %}" class="btn btn-sm btn-outline-danger">Borrar</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning mt-3" role="alert">
+                            No se encontraron campeones.
+                        </div>
+                    {% endif %}
+                    <!-- Botón para Agregar campeón -->
+                    <div class="mb-3 text-end">
+                        <a href="{% url 'campeones_new' %}" class="btn btn-primary">
+                            Agregar campeón
+                        </a>
+                    </div>
+
+                        <!-- Controles de paginación -->
+                        {% if is_paginated %}
+                        <nav aria-label="Paginación de campeones">
+                            <ul class="pagination justify-content-center mt-4">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=1">&laquo; Primero</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link">&laquo; Primero</span>
+                                    </li>
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Anterior</span>
+                                    </li>
+                                {% endif %}
+
+                                {% for num in paginator.page_range %}
+                                    {% if page_obj.number == num %}
+                                        <li class="page-item active">
+                                            <span class="page-link">{{ num }}</span>
+                                        </li>
+                                    <!-- Solo se mostrarán los botones de las páginas que estén dentro del rango de 3 páginas antes y 3 después  -->
+                                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ paginator.num_pages }}">Último &raquo;</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Siguiente</span>
+                                    </li>
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Último &raquo;</span>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

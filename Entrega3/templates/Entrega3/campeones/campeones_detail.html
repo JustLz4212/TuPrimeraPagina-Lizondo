@@ -1,0 +1,36 @@
+{% extends 'Entrega3/padre.html' %}
+{% load static %}
+
+{% block title %}Campeones{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4">📘 Detalle del campeón</h4>
+
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item">
+                            <strong>Nombre de campeón:</strong> <i>{{ campeones.nombre }}</i>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Campeonatos:</strong> <i>{{ campeones.campeonatos }}</i>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Victorias:</strong> <i>{{ campeones.victorias }}</i>
+                        </li>
+                    </ul>
+
+                    <div class="text-center">
+                        <a href="{% url 'campeones' %}" class="btn btn-outline-primary">← Regresar a la lista</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
