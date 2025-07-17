@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from Entrega3.forms import UserRegisterForm, EditProfileForm#, AvatarForm
