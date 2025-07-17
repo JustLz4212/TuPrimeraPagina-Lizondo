@@ -1,5 +1,5 @@
 from django import forms
-# from Entrega3.models import Avatar
+from Entrega3.models import Avatar
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
@@ -58,8 +58,8 @@ class EditProfileForm(UserChangeForm):
         fields = ('username', 'email', 'last_name', 'first_name', 'is_active')
 
 
-# class AvatarForm(forms.ModelForm):
+class AvatarForm(forms.ModelForm):
     
-#     class Meta:
-#         model = Avatar
-#         fields = ['imagen']
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

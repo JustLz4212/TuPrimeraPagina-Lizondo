@@ -2,8 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from Entrega3.forms import UserRegisterForm, EditProfileForm#, AvatarForm
-# from Entrega3.models import Avatar
+from Entrega3.forms import UserRegisterForm, EditProfileForm, AvatarForm
+from Entrega3.models import Avatar
 
 def login_request(request):
 
@@ -67,14 +67,14 @@ def editarPerfil(request):
     return render(request, "Entrega3/usuario/editarPerfil.html", {"form": miFormulario, "usuario": usuario})
 
 
-# @login_required
-# def upload_avatar(request):
-#     avatar = Avatar.objects.filter(user=request.user.id).first()
-#     if request.method == 'POST':
-#         form = AvatarForm(request.POST, request.FILES, instance=avatar)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('inicio')
-#     else:
-#         form = AvatarForm(instance=avatar)
-#     return render(request, 'Entrega3/usuario/upload_avatar.html', {'form': form})
+@login_required
+def upload_avatar(request):
+    avatar = Avatar.objects.filter(user=request.user.id).first()
+    if request.method == 'POST':
+        form = AvatarForm(request.POST, request.FILES, instance=avatar)
+        if form.is_valid():
+            form.save()
+            return redirect('inicio')
+    else:
+        form = AvatarForm(instance=avatar)
+    return render(request, 'Entrega3/usuario/upload_avatar.html', {'form': form})
