@@ -1,11 +1,21 @@
-# TuPrimeraPagina-Lizondo
+# Entrega Final-Lizondo
 
-Comentarios generales: La entrega está en la carpeta Entrega3. AppCoder es el proyecto armado en clase que rehice para probar algunas cosas, ignorar.
+Aclaraciones: 
+Hice la entrega final en el mismo repositorio que la entrega 3, por eso la App es "Entrega3", pero es el trabajo final.
+Perdí una gran cantidad de trabajo por un problema con GIT, y no llegué a rehacer el front end, pero las funcionalidades deberían seguir estando.
 
-Si se clickea el link de runserver ya debería abrir la página, no es necesario agregar nada con //. Hay tres clases: Piloto, Escudería y Campeones. Los botones arriba a la derecha llevan al formulario para cada clase. Si uno selecciona uno de los botones y baja al fondo de la pantalla aparece un botón "agregar" para ingreser datos a cada clase. 
+#Descripción:
 
-Cuando uno selecciona "agregar", aparece el cartel de "Datos erróneos, revisar" siempre, todavía no lo pude quitar. Igual el form funciona, y cuando uno llena los datos y presiona "enviar" los datos se cargan sin problemas. 
+Página web con información sobre Pilotos, Escuderías y Campeones actuales de la Fórmula 1.
 
-Para ir a la búsqueda la dirección es '/busquedaPiloto/'. Es la única para la que es necesario escribir una dirección, el resto debería ser accesible con los botones. 
+Los usuarios pueden:
 
-La estética de la página es la misma de las clases, no me dió el tiempo de modificarla. Todo lo demás debería estar. 
+-Ingresar, actualizar y borrar Pilotos actuales de la fórmula 1, con su escudería, puntaje actual, una foto y su fecha de nacimiento
+-Ingresar, actualizar y borrar Escuderías actuales de la fórmula 1, con su puesto en el campeonato y director de equipo.
+-Ingresar, actualizar y borrar Campeones actualmente activos en la parrilla de fórmula 1.
+
+-Registrarse y loguearse a la página, pudiendo agregar nombre, apellido, email y una foto de perfil.
+-Editar su usuario y datos.
+
+#Video funcionando:
+
