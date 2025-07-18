@@ -8,16 +8,26 @@ class PilotoFormulario(forms.Form):
     nombre = forms.CharField()
     escuderia = forms.CharField()
     puntos = forms.IntegerField()
+    fechanac = forms.DateField(
+        required=False,
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
+    image = forms.ImageField(required=False)
+
 
 class EscuderiaFormulario(forms.Form):
     nombre = forms.CharField()
     teamprincipal = forms.CharField()
     puesto = forms.IntegerField()
+    image = forms.ImageField(required=False)
+
 
 class CampeonesFormulario(forms.Form):
     nombre = forms.CharField()
     campeonatos = forms.IntegerField()
     victorias = forms.IntegerField()
+    image = forms.ImageField(required=False)
+
  
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()

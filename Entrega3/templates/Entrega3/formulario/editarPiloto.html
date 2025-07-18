@@ -19,7 +19,18 @@
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4">Editar Piloto N° {{ piloto_id }}</h4>
 
-                    <form method="POST" action="">
+                    {% if piloto_id %}
+                        {% for piloto in pilotos %}
+                            {% if piloto.id == piloto_id and piloto.imagen %}
+                                <div class="text-center mb-3">
+                                    <img src="{{ piloto.imagen.url }}" alt="Imagen actual" class="img-thumbnail" width="150">
+                                    <p class="text-muted">Imagen actual</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="" enctype="multipart/form-data">
                         {% csrf_token %}
                         <table class="table table-borderless">
                             {{ miFormulario.as_table }}
@@ -35,5 +46,4 @@
     </div>
 </div>
 
-       
 {% endblock %}
