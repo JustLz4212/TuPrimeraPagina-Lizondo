@@ -1,0 +1,29 @@
+{% extends 'Entrega3/padre.html' %}
+{% load static %}
+
+{% block title %}Sobre mí{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4">👤 Sobre mí</h2>
+
+                    <img src="{% static 'Entrega3/assets/profile.jpg' %}" class="rounded-circle mb-3" width="150" alt="Foto de perfil">
+
+                    <p class="lead">
+                        ¡Hola! Soy Justo Lizondo, Ingeniero en petróleo y fanático de la Fórmula 1. <br>
+                        Este proyecto fue desarrollado con Django como parte de la Entrega Final para el Curso introductorio de Python.
+                    </p>
+                    <hr>
+                    <p class="text-muted small">
+                        Si estás leyendo esto, ¡gracias por visitar mi sitio!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

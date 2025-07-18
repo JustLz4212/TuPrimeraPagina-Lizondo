@@ -83,3 +83,9 @@ def buscar(request):
     escuderia = request.GET.get('escuderia', '')
     pilotos = Piloto.objects.filter(escuderia__icontains=escuderia)
     return render(request, "Entrega3/formulario/leerPilotos.html", {"pilotos": pilotos})
+
+def about_me(request):
+    avatar = None
+    if request.user.is_authenticated:
+        avatar = Avatar.objects.filter(user=request.user).first()
+    return render(request, "Entrega3/about_me.html", {"avatar": avatar})

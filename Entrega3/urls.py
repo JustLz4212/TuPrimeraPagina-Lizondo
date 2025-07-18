@@ -1,5 +1,5 @@
 from django.urls import path
-from Entrega3.views.other import index, busquedaPiloto, buscar
+from Entrega3.views.other import index, busquedaPiloto, buscar, about_me
 from Entrega3.views.pilotos import leerPilotos, pilotoFormulario, eliminarPiloto, editarPiloto
 from Entrega3.views.escuderia import EscuderiaCreateView, EscuderiaDeleteView, EscuderiaDetailView, EscuderiaListView, EscuderiaUpdateView
 from Entrega3.views.campeones import CampeonesCreateView, CampeonesDeleteView, CampeonesDetailView, CampeonesListView, CampeonesUpdateView
@@ -12,6 +12,7 @@ urlpatterns = [
     # path('campeonesForm/', campeonesForm, name='campeonesForm'),
     path('busquedaPiloto/', busquedaPiloto, name="busquedaPiloto"),
     path('buscar/', buscar, name='buscar'),
+    path('about/', about_me, name='about'),
 
     # CRUD basico
     path('pilotos/', leerPilotos, name='pilotos'),
