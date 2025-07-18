@@ -1,10 +1,14 @@
 from django.shortcuts import render
-from ..models import Campeones, Piloto, Escuderia
+from ..models import Campeones, Piloto, Escuderia, Avatar
 from ..forms import PilotoFormulario, CampeonesFormulario, EscuderiaFormulario
 from django.http import HttpResponse
 
+# def index(request):
+#     return render(request, "Entrega3/index.html")
+
 def index(request):
-    return render(request, "Entrega3/index.html")
+    avatar = Avatar.objects.filter(user=request.user.id).first()
+    return render(request, "Entrega3/index.html", {"avatar": avatar if avatar else None})
 
 def campeones(request):
     return render(request, "Entrega3/Campeones.html")

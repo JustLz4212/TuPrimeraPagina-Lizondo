@@ -1,5 +1,5 @@
 from django import forms
-# from Entrega3.models import Avatar
+from Entrega3.models import Avatar
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
@@ -8,25 +8,36 @@ class PilotoFormulario(forms.Form):
     nombre = forms.CharField()
     escuderia = forms.CharField()
     puntos = forms.IntegerField()
+    fechanac = forms.DateField(
+        required=False,
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
+    image = forms.ImageField(required=False)
+
 
 class EscuderiaFormulario(forms.Form):
     nombre = forms.CharField()
     teamprincipal = forms.CharField()
     puesto = forms.IntegerField()
+    image = forms.ImageField(required=False)
+
 
 class CampeonesFormulario(forms.Form):
     nombre = forms.CharField()
     campeonatos = forms.IntegerField()
     victorias = forms.IntegerField()
+    image = forms.ImageField(required=False)
+
  
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+    imagen = forms.ImageField(required=False)  # ← nuevo campo opcional
  
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'imagen']
         # Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
 
@@ -51,15 +62,17 @@ class EditProfileForm(UserChangeForm):
     last_name = forms.CharField()
     first_name = forms.CharField()
     is_active = forms.BooleanField(required=False, label="¿Está activo?")
+    imagen = forms.ImageField(required=False)  # ← nuevo campo
+
 
     class Meta:
         model = User
         # fields = ('email', 'password')
-        fields = ('username', 'email', 'last_name', 'first_name', 'is_active')
+        fields = ('username', 'email', 'last_name', 'first_name', 'is_active', 'imagen')
 
 
-# class AvatarForm(forms.ModelForm):
+class AvatarForm(forms.ModelForm):
     
-#     class Meta:
-#         model = Avatar
-#         fields = ['imagen']
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

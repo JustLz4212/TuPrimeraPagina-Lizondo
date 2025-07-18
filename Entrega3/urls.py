@@ -3,7 +3,7 @@ from Entrega3.views.other import index, busquedaPiloto, buscar
 from Entrega3.views.pilotos import leerPilotos, pilotoFormulario, eliminarPiloto, editarPiloto
 from Entrega3.views.escuderia import EscuderiaCreateView, EscuderiaDeleteView, EscuderiaDetailView, EscuderiaListView, EscuderiaUpdateView
 from Entrega3.views.campeones import CampeonesCreateView, CampeonesDeleteView, CampeonesDetailView, CampeonesListView, CampeonesUpdateView
-from Entrega3.views.usuario import login_request, register, editarPerfil#, upload_avatar
+from Entrega3.views.usuario import login_request, register, editarPerfil, upload_avatar
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -38,6 +38,6 @@ urlpatterns = [
     path('logout', LogoutView.as_view(template_name='Entrega3/usuario/logout.html'), name='logout'),
 
     path('editarPerfil/', editarPerfil, name='editarPerfil'),
-    # path('upload_avatar/', upload_avatar, name='upload_avatar'),
+    path('upload_avatar/', upload_avatar, name='upload_avatar'),
 
 ]

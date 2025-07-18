@@ -28,8 +28,6 @@
                         </div>
                     </form>
 
-
-
                     {% if pilotos %}
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover align-middle text-center">
@@ -38,7 +36,11 @@
                                         <th>Nombre</th>
                                         <th>Escudería</th>
                                         <th>Puntos</th>
-                                        <th>Acciones</th>
+                                        <th>Fecha de Nacimiento</th>
+                                        <th>Imagen</th>
+                                        {% if user.is_authenticated %}
+                                            <th>Acciones</th>
+                                        {% endif %}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,22 +49,32 @@
                                             <td>{{ piloto.nombre }}</td>
                                             <td>{{ piloto.escuderia }}</td>
                                             <td>{{ piloto.puntos }}</td>
+                                            <td>{{ piloto.fechanac|date:"d/m/Y" }}</td>
                                             <td>
-                                                <a href="{% url 'editarPiloto' piloto.id %}" 
-                                                class="btn btn-secondary btn-sm me-1" 
-                                                title="Editar">
-                                                    <i class="bi bi-pencil-square"></i> Editar
-                                                </a>
-                                                <a href="{% url 'eliminarPiloto' piloto.id %}" 
-                                                class="btn btn-danger btn-sm"
-                                                title="Eliminar"
-                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este piloto?');">
-                                                    <i class="bi bi-trash"></i> Eliminar
-                                                </a>
+                                                {% if piloto.image %}
+                                                    <img src="{{ piloto.image.url }}" alt="Imagen de {{ piloto.nombre }}" width="60" height="60" class="rounded">
+                                                {% else %}
+                                                    <span class="text-muted">Sin imagen</span>
+                                                {% endif %}
                                             </td>
+                                            {% if user.is_authenticated %}
+                                                <td>
+                                                    <a href="{% url 'editarPiloto' piloto.id %}" 
+                                                    class="btn btn-secondary btn-sm me-1" 
+                                                    title="Editar">
+                                                        <i class="bi bi-pencil-square"></i> Editar
+                                                    </a>
+                                                    <a href="{% url 'eliminarPiloto' piloto.id %}" 
+                                                    class="btn btn-danger btn-sm"
+                                                    title="Eliminar"
+                                                    onclick="return confirm('¿Estás seguro de que deseas eliminar este piloto?');">
+                                                        <i class="bi bi-trash"></i> Eliminar
+                                                    </a>
+                                                </td>
+                                            {% endif %}
                                         </tr>
                                     {% endfor %}
-                                </tbody>
+                                </tbody>    
                             </table>
                         </div>
                     {% else %}
@@ -70,13 +82,15 @@
                             No se encontraron Pilotos.
                         </div>
                     {% endif %}
-                    
-                    <!-- Botón para crear nuevo piloto -->
-                    <div class="mb-3 text-end">
-                        <a href="{% url 'pilotoFormulario' %}" class="btn btn-primary">
-                            Crear nuevo Piloto
-                        </a>
-                    </div>
+
+                    {% if user.is_authenticated %}
+                        <!-- Botón para crear nuevo piloto -->
+                        <div class="mb-3 text-end">
+                            <a href="{% url 'pilotoFormulario' %}" class="btn btn-primary">
+                                Crear nuevo Piloto
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
