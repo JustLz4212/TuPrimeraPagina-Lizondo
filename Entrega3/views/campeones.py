@@ -1,7 +1,7 @@
 from django.views.generic import ListView # Importamos ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from Entrega3.models import Campeones
+from Entrega3.models import Campeones, Avatar
 
 
 class CampeonesListView(ListView):
@@ -10,8 +10,18 @@ class CampeonesListView(ListView):
     """
     model = Campeones
     template_name = 'Entrega3/campeones/campeones_list.html'
-    #paginate_by = 10                # Paginación: 10 campeones por página
-    #ordering = ['camada',]  # Ordenar por camada (descendente) y luego por nombre (ascendente)
+    # paginate_by = 10
+    # ordering = ['camada']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Agregamos el avatar del usuario al contexto si está logueado
+        if self.request.user.is_authenticated:
+            context['avatar'] = Avatar.objects.filter(user=self.request.user).first()
+        
+        return context
+    
 
 
 class CampeonesDetailView(DetailView):

@@ -33,10 +33,11 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+    imagen = forms.ImageField(required=False)  # ← nuevo campo opcional
  
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'imagen']
         # Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
 
@@ -61,11 +62,13 @@ class EditProfileForm(UserChangeForm):
     last_name = forms.CharField()
     first_name = forms.CharField()
     is_active = forms.BooleanField(required=False, label="¿Está activo?")
+    imagen = forms.ImageField(required=False)  # ← nuevo campo
+
 
     class Meta:
         model = User
         # fields = ('email', 'password')
-        fields = ('username', 'email', 'last_name', 'first_name', 'is_active')
+        fields = ('username', 'email', 'last_name', 'first_name', 'is_active', 'imagen')
 
 
 class AvatarForm(forms.ModelForm):

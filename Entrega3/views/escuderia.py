@@ -1,17 +1,24 @@
 from django.views.generic import ListView # Importamos ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from Entrega3.models import Escuderia
-
+from Entrega3.models import Escuderia, Avatar
 
 class EscuderiaListView(ListView):
     """
-    Vista para listar todos los escuderias.
+    Vista para listar todas las escuderías.
     """
     model = Escuderia
     template_name = 'Entrega3/escuderias/escuderias_list.html'
-    #paginate_by = 10                # Paginación: 10 escuderias por página
-    #ordering = ['camada',]  # Ordenar por camada (descendente) y luego por nombre (ascendente)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Agregamos el avatar del usuario al contexto si está autenticado
+        if self.request.user.is_authenticated:
+            context['avatar'] = Avatar.objects.filter(user=self.request.user).first()
+        
+        return context
+
 
 
 class EscuderiaDetailView(DetailView):

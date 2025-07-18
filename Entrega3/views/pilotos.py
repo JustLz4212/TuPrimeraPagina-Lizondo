@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from Entrega3.forms import PilotoFormulario
-from Entrega3.models import Piloto
+from Entrega3.models import Piloto, Avatar
 from django.contrib.auth.decorators import login_required
 
 # def leerPilotos(request):
@@ -78,8 +78,11 @@ from django.contrib.auth.decorators import login_required
 #     return render(request, "Entrega3/formulario/editarPiloto.html", {"miFormulario": miFormulario, "piloto_id": piloto.id})
 
 def leerPilotos(request):
-    pilotos = Piloto.objects.all() 
-    return render(request, "Entrega3/formulario/leerPilotos.html", {"pilotos": pilotos})
+    pilotos = Piloto.objects.all()
+    avatar = None
+    if request.user.is_authenticated:
+        avatar = Avatar.objects.filter(user=request.user).first()    
+    return render(request, "Entrega3/formulario/leerPilotos.html", {"pilotos": pilotos, "avatar": avatar})
 
 
 @login_required
